@@ -242,16 +242,16 @@ def delete_poor_checkpoints(train_runs: list[dict]):
 
 def get_log_scale(task_type: str):
     log_scale_map = {
-        TaskType.INSTRUCTTEXTTASK.value: 0.18,
-        TaskType.DPOTASK.value: 0.18,
-        TaskType.GRPOTASK.value: 0.2,
-        TaskType.CHATTASK.value: 0.18,
+        TaskType.INSTRUCTTEXTTASK.value: 0.22,
+        TaskType.DPOTASK.value: 0.22,
+        TaskType.GRPOTASK.value: 0.24,
+        TaskType.CHATTASK.value: 0.22,
     }
     return log_scale_map[task_type]
 
 
 def main():
-    print("---STARTING TEXT TRAINING SCRIPT---", flush=True)
+    print("---STARTING TEXT TRAINING SCRIPT--- Made-with: ICE", flush=True)
     parser = argparse.ArgumentParser(description="Text Model Training Script")
     parser.add_argument("--task-id", required=True, help="Task ID")
     parser.add_argument("--model", required=True, help="Model name or path")
@@ -296,7 +296,7 @@ def main():
     )
 
     parser.add_argument(
-        "--reg-ratio", type=float, help="Reg ratio to use for training", default=1.24383
+        "--reg-ratio", type=float, help="Reg ratio to use for training", default=1.30
     )
 
     args = parser.parse_args()

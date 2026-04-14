@@ -158,7 +158,7 @@ def get_run_cmd(config: dict, gpu_nums: int):
     --logging_steps 5 \
     --learning_rate {learning_rate} \
     --weight_decay 0. \
-    --warmup_steps 35 \
+    --warmup_steps 40 \
     --lr_scheduler_type cosine_with_min_lr \
     --lr_scheduler_kwargs "{\\"min_lr_rate\\": {min_lr_rate}}" \
     --tf32 True \
@@ -169,7 +169,7 @@ def get_run_cmd(config: dict, gpu_nums: int):
 
     if config.get("use_lora", False):
         template += (
-            " --use_peft --lora_r 128 --lora_alpha 256 --lora_target_modules all-linear"
+            " --use_peft --lora_r 192 --lora_alpha 384 --lora_target_modules all-linear"
         )
 
     if run_type == "ds":
@@ -195,7 +195,7 @@ def get_training_json(train_info: dict) -> dict:
         "epoch_num": 3,
         "batch_size": config["batch_size"],
         "learning_rate": config["lr"],
-        "min_lr_rate": 0.25,
+        "min_lr_rate": 0.15,
         "use_liger": get_use_liger(model_architecture),
         "optimizer": "paged_adamw_8bit",
         "use_lora": config.get("use_lora", False),
